@@ -71,7 +71,7 @@ public class PresentChain
         }
         try
         {
-            curr.lock();
+            pred.lock();
         }
         catch(Exception e)
         {
@@ -79,7 +79,16 @@ public class PresentChain
         }
         try
         {
-            if (curr.id != Integer.MAX_VALUE)
+            curr.lock();
+        }
+        catch(Exception e)
+        {
+            pred.unlock();
+            return;
+        }
+        try
+        {
+            if (curr.id != Integer.MAX_VALUE && pred.next.id == curr.id)
             {
                 pred.next = curr.next;
                 if (Presents.reporting)
@@ -93,6 +102,7 @@ public class PresentChain
         catch(Exception e){}
         finally
         {
+            pred.unlock();
             curr.unlock();
         }
     }
