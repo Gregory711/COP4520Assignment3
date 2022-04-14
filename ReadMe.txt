@@ -14,6 +14,9 @@ Problem 1: The Birthday Presents Party
     The remove operation randomly and optimistically iterates through the list and picks a present to remove.
     The PresentNode is what the PresentChain is made of and simply stores the id, an AtomicBoolean locked and TTAS locked and unlock methods.
 
+    The solution that the Minotaur and his servants previously used that resulted in more presents than thank you notes likely messed up when concurrently adding presents to the chain.
+    For instance, if you had the following chain 1,5,7 and you tried to add 3 and 4 at the same time you could end up overwriting 1's next if you weren't careful resulting in no valid way to get to the overwritten number.
+
 Problem 2: Atmospheric Temperature Reading Module
     Compile:
     javac TemperatureModule.java Sensor.java
