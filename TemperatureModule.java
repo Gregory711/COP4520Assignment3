@@ -39,10 +39,10 @@ public class TemperatureModule
                     lowest.poll();
                     highest.poll();
                 }
-                if (j < ((60 * 8) - 10))
+                if (j < ((60 * 8) - 80))
                 {
                     low = high = temps[j];
-                    for (int k = 1; k < 10; k++)
+                    for (int k = 1; k < 80; k++)
                     {
                         if (temps[j + k] < low)
                         {
@@ -76,17 +76,7 @@ public class TemperatureModule
             {
                 System.out.print(highest.poll() + " ");
             }
-            System.out.println("\nLargest temperature difference was found after " + startIndex + " minutes.");
-            System.out.print("The difference was " + maxDiff + " and the values were as follows: [");
-            for (int j = 0; j < 10; j++)
-            {
-                System.out.print(temps[startIndex + j]);
-                if (j < 9)
-                {
-                    System.out.print(", ");
-                }
-            }
-            System.out.println("]");
+            System.out.println("\nLargest temperature difference was found after " + startIndex + " minutes and was " + maxDiff);
         }
     }
 }
